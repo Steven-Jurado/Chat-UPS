@@ -1,0 +1,59 @@
+﻿@{
+    ViewData["Title"] = "Chat UPS";
+    string ImagenUniversidadSalesiana = "https://www.ups.edu.ec/documents/20121/77326/Isotipo+Original.png/48fb2ada-b4e7-09df-b45a-884cda62cc9b?version=1.0&t=1620746533255&imagePreview=1";
+}
+
+@model List<UsuarioChat>;
+
+<div id="plist" class="people-list">
+    <ul class="list-unstyled chat-list mt-2 mb-0">
+        @foreach (var conectado in Model)
+        {
+            <li class="clearfix active">
+                <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
+                <div class="about" onclick="AbrirHistorialChat('@conectado.Nombre','@ImagenUniversidadSalesiana','@conectado.IdentificadorGrupo')">
+                    <div class="name">@conectado.Nombre</div>
+                    <div class="status"> <i class="fa fa-circle online"></i> online </div>
+                </div>
+            </li>
+        }
+    </ul>
+</div>
+<div class="chat">
+    <div id="init-chat">
+        <div class="chat-header clearfix">
+            <div class="row">
+                <div class="col-lg-6">
+                    <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
+                        <img src="@ImagenUniversidadSalesiana" alt="avatar">
+                    </a>
+                    <div class="chat-about">
+                        <h6 class="m-b-0">Universidad Politecnica Salesiana</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="chat-history">
+            <ul id="history-chat" class="m-b-0">
+                <li class="clearfix">
+                    <div class="message-data text-right">
+                        <span class="message-data-time">10:10 AM, Today</span>
+                        <img src="@ImagenUniversidadSalesiana" alt="avatar">
+                    </div>
+                    <div class="message other-message float-right"> Bienvenido al chat ups </div>
+                </li>
+                <li class="clearfix">
+                    <div class="message other-message float-right"> te saluda <strong>Steven Jurado M.</strong> chat bot de la materia sistema distribuido </div>
+                </li>
+            </ul>
+        </div>
+        <div class="chat-message clearfix">
+            <div class="input-group mb-0">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" onclick="EnviarMensaje($('#chat-message').val())"><i class="fa fa-send"></i></span>
+                </div>
+                <input id="chat-message" onkeypress="EnviarMensajeEnter(event,$('#chat-message').val())" type="text" class="form-control" placeholder="Enter text here...">
+            </div>
+        </div>
+    </div>
+</div>
